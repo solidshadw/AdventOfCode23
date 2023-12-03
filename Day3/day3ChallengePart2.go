@@ -15,7 +15,7 @@ type PosNumber struct {
 	Number        int
 }
 
-func findNumbers(str string, lineIndex int) []*PosNumber {
+func findNumbers2(str string, lineIndex int) []*PosNumber {
 	re := regexp.MustCompile(`\d+`)
 	matches := re.FindAllStringSubmatchIndex(str, -1)
 
@@ -91,7 +91,7 @@ func main() {
 
 	var allNumbers []*PosNumber
 	for lineIndex, line := range lines {
-		numbersForLine := findNumbers(line, lineIndex)
+		numbersForLine := findNumbers2(line, lineIndex)
 		allNumbers = append(allNumbers, numbersForLine...)
 	}
 

@@ -55,7 +55,7 @@ func extractCalibrationValue(line string) (int, error) {
 	return calibrationValue, nil
 }
 
-func main() {
+func challengeComplete() {
 	// Open the file for reading
 	file, err := os.Open("input.txt")
 	if err != nil {
