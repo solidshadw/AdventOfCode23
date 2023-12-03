@@ -8,6 +8,6 @@ Greetings, fellow coders! Welcome to my festive corner of the coding universe, w
 
 Because who needs chestnuts roasting on an open fire when you can have a laptop roasting with intense problem-solving?
 
-![Santa](images\fireflySanta.jpg)
+![Santa](/images/fireflySanta.jpg)
 
 `Created with Adobe Firefly`
