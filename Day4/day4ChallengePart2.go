@@ -17,12 +17,14 @@ type Card struct { // Define a struct to represent a card
 func parseCards(scanner *bufio.Scanner) []Card { // Parse the cards from the input file
 	cards := make([]Card, 0) // Initialize a slice of cards
 	for scanner.Scan() {     // Loop through each line in the file
-		line := scanner.Text()            // Get the current line as a string
-		parts := strings.Split(line, "|") // Split the line into two parts using the "|" separator
-		card := Card{                     // Create a new card
-			winningNumbers: strings.Fields(parts[0]), // Get the winning numbers as a slice of strings
-			yourNumbers:    strings.Fields(parts[1]), // Get your numbers as a slice of strings
-			instances:      1,                        // Initialize the number of instances to 1
+		line := scanner.Text()                     // Get the current line as a string
+		parts := strings.Split(line, "|")          // Split the line into two parts using the "|" separator
+		winningNumbers := strings.Fields(parts[0]) // Get the winning numbers as a slice of strings
+		yourNumbers := strings.Fields(parts[1])    // Get your numbers as a slice of strings
+		card := Card{                              // Create a new card
+			winningNumbers: winningNumbers, // Set the winning numbers
+			yourNumbers:    yourNumbers,    // Set your numbers
+			instances:      1,              // Initialize the number of instances to 1
 		}
 		cards = append(cards, card) // Add the card to the slice of cards
 	}
