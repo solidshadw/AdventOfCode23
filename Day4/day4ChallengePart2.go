@@ -14,30 +14,6 @@ type Card struct { // Define a struct to represent a card
 	winnerCards    int      // Define an integer to represent the number of winning cards
 }
 
-func main() {
-	file, _ := os.Open("input.txt")   // Open the "input.txt" file
-	defer file.Close()                // Close the file when we're done with it
-	scanner := bufio.NewScanner(file) // Create a scanner to read the file line by line
-
-	cards := parseCards(scanner) // Parse the cards from the input file
-
-	for i := range cards { // Loop through each card
-		cards[i].calculateWinnerCards() // Calculate the number of winning cards for the current card
-	}
-
-	for i := range cards { // Loop through each card
-		for times := 1; times <= cards[i].instances; times++ { // Loop through each instance of the current card
-			for j := i + 1; j <= i+cards[i].winnerCards && j < len(cards); j++ { // Loop through each card that is a winner for the current card
-				cards[j].instances++ // Increment the number of instances for the current card
-			}
-		}
-	}
-
-	totalInstances := sumInstances(cards) // Calculate the total number of instances for all cards
-
-	fmt.Println(totalInstances) // Print the total number of instances
-}
-
 func parseCards(scanner *bufio.Scanner) []Card { // Parse the cards from the input file
 	cards := make([]Card, 0) // Initialize a slice of cards
 	for scanner.Scan() {     // Loop through each line in the file
@@ -70,4 +46,28 @@ func sumInstances(cards []Card) int { // Calculate the total number of instances
 		totalInstances += card.instances // Add the number of instances for the current card to the total number of instances
 	}
 	return totalInstances // Return the total number of instances
+}
+
+func main() {
+	file, _ := os.Open("input.txt")   // Open the "input.txt" file
+	defer file.Close()                // Close the file when we're done with it
+	scanner := bufio.NewScanner(file) // Create a scanner to read the file line by line
+
+	cards := parseCards(scanner) // Parse the cards from the input file
+
+	for i := range cards { // Loop through each card
+		cards[i].calculateWinnerCards() // Calculate the number of winning cards for the current card
+	}
+
+	for i := range cards { // Loop through each card
+		for times := 1; times <= cards[i].instances; times++ { // Loop through each instance of the current card
+			for j := i + 1; j <= i+cards[i].winnerCards && j < len(cards); j++ { // Loop through each card that is a winner for the current card
+				cards[j].instances++ // Increment the number of instances for the current card
+			}
+		}
+	}
+
+	totalInstances := sumInstances(cards) // Calculate the total number of instances for all cards
+
+	fmt.Println(totalInstances) // Print the total number of instances
 }
